@@ -5,7 +5,7 @@ import progressbar
 import numpy as np
 import counter
 from dustbin import Dustbin
-from globals import seedValue, populationSize, numGenerations, city
+from globals import seedValue, populationSize, numGenerations, city, plot_progress
 
 pbar = progressbar.ProgressBar()
 
@@ -25,16 +25,18 @@ globalRoute = pop.getFittest()
 print("Initial minimum distance: " + str(globalRoute.getDistance()))
 
 # Start evolving
-fig = plt.figure()
+if plot_progress:
+    fig = plt.figure()
 
 for i in pbar(range(numGenerations)):
     pop = GA.evolvePopulation(pop)
     localRoute = pop.getFittest()
     if globalRoute.getDistance() > localRoute.getDistance():
         globalRoute = localRoute
-        # globalRoute.visualization(plt)
-        # plt.draw()
-        # plt.pause(0.01)
+        if plot_progress:
+            globalRoute.visualization(plt)
+            plt.draw()
+            plt.pause(0.01)
     yaxis.append(localRoute.getDistance())
     xaxis.append(i)
 
