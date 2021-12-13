@@ -19,8 +19,8 @@ tournamentSize = 10
 elitism = True
 # number of trucks
 numTrucks = 5
-
 distance_cont = 0
+plot_progress = False
 
 def random_range(n, total):
     """Return a randomly chosen list of n positive integers summing to total.
