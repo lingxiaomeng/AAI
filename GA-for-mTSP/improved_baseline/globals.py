@@ -1,5 +1,4 @@
 import random
-import math
 
 """
 Contains all global variables specific to simulation

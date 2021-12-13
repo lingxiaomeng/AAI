@@ -4,6 +4,8 @@ import matplotlib.pyplot as plt
 import progressbar
 import numpy as np
 import counter
+from dustbin import Dustbin
+from globals import *
 
 pbar = progressbar.ProgressBar()
 
@@ -13,7 +15,9 @@ city = np.genfromtxt(city_path, dtype=int, skip_header=1)
 numNodes = len(city)
 
 for i in range(numNodes):
-    RouteManager.addDustbin(Dustbin(city[i][1], city[i][2]))
+    RouteManager.addDustbin(Dustbin(city[i][1], city[i][2], i))
+RouteManager.calculateDistanceMatrix()
+
 
 random.seed(seedValue)
 yaxis = []  # Fittest value (distance)

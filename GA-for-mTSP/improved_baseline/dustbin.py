@@ -5,15 +5,19 @@ will be assigned random values.
 '''
 from globals import *
 import counter
+from routemanager import RouteManager
+
 class Dustbin:
 	# Good old constructor
-	def __init__ (self, x = None, y = None):
+	def __init__ (self, x = None, y = None, id = -1):
 		if x == None and y == None:
 			self.x = random.randint(0, xMax)
 			self.y = random.randint(0, yMax)
+			self.id = -1
 		else:
 			self.x = x
 			self.y = y
+			self.id = id
 
 	def getX (self):
 		return self.x
@@ -23,9 +27,7 @@ class Dustbin:
 
 	# Returns distance to the dustbin passed as argument
 	def distanceTo (self, db):
-		xDis = abs(self.getX() - db.getX())
-		yDis = abs(self.getY() - db.getY())
-		dis = math.sqrt((xDis*xDis) + (yDis*yDis))
+		dis = RouteManager.distanceMatrix[self.id][db.id]
 		counter.count = counter.count + 1
 		return dis
 

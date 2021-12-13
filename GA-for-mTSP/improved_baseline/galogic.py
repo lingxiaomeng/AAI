@@ -3,6 +3,7 @@ The main helper class for Genetic Algorithm to perform
 crossover, mutation on populations to evolve them
 '''
 from population import *
+from globals import elitism,tournamentSize,numNodes,mutationRate
 
 class GA:
 
