@@ -1,13 +1,16 @@
 import random
-
+import numpy as np
 """
 Contains all global variables specific to simulation
 """
 # Defines range for coordinates when dustbins are randomly scattered
+
+city_path = "/home/mlx/AAI/instances/mtsp51.txt"
+city = np.genfromtxt(city_path, dtype=int, skip_header=1)
 xMax = 1000
 yMax = 1000
 seedValue = 1
-numNodes = 51
+numNodes = len(city)
 numGenerations = 100
 # size of population
 populationSize = 100
