@@ -4,7 +4,7 @@ Locatin coordinates can be passed while creating the object or they
 will be assigned random values.
 '''
 from globals import *
-
+import counter
 class Dustbin:
 	# Good old constructor
 	def __init__ (self, x = None, y = None):
@@ -26,6 +26,7 @@ class Dustbin:
 		xDis = abs(self.getX() - db.getX())
 		yDis = abs(self.getY() - db.getY())
 		dis = math.sqrt((xDis*xDis) + (yDis*yDis))
+		counter.count = counter.count + 1
 		return dis
 
 	# Gives string representation of the Object with coordinates

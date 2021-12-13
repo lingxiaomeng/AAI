@@ -9,7 +9,7 @@ xMax = 1000
 yMax = 1000
 seedValue = 1
 numNodes = 51
-numGenerations = 200
+numGenerations = 100
 # size of population
 populationSize = 100
 mutationRate = 0.02
@@ -18,6 +18,7 @@ elitism = True
 # number of trucks
 numTrucks = 5
 
+distance_cont = 0
 
 def random_range(n, total):
     """Return a randomly chosen list of n positive integers summing to total.
