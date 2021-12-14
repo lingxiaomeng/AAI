@@ -7,8 +7,9 @@ You can download Anaconda from https://www.anaconda.com/products/individual .
 # Building
 
 ```bash
-conda create -n mtsp python=3.8
-conda activate mtsp
 
+git clone https://github.com/lingxiaomeng/AAI.git
+cd AAI
+conda env create -f environment.yml
 ```
 

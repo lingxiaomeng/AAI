@@ -123,4 +123,3 @@ dependencies:
   - zstd=1.4.9=haebb681_0
   - pip:
     - progressbar==2.5
-prefix: /home/mlx/anaconda3/envs/mtsp
