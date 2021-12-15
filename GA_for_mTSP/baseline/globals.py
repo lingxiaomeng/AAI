@@ -5,10 +5,10 @@ import math
 Contains all global variables specific to simulation
 """
 # Defines range for coordinates when dustbins are randomly scattered
-xMax = 1000
-yMax = 1000
+xMax = 10000000
+yMax = 10000000
 seedValue = 1
-numNodes = 51
+numNodes = 226
 numGenerations = 100
 # size of population
 populationSize = 100

@@ -4,6 +4,7 @@ crossover, mutation on populations to evolve them
 """
 from .population import *
 from . import globals
+import numpy as np
 
 
 class GA:
@@ -79,9 +80,27 @@ class GA:
 
     # Mutation opeeration
     @classmethod
-    def mutate(cls, route: Route):
-
+    def mutate(cls, route: Route)->Route:
+        mutate_type = random.randint(0, 7)
+        if mutate_type == 1:
+            cls.flipMutate(route)
+        if mutate_type == 2:
+            cls.swapMutate(route)
+        if mutate_type == 3:
+            cls.flipMutate(route)
+        if mutate_type == 4:
+            cls.subrouteCrossoverMutate(route)
+        if mutate_type == 5:
+            cls.flipMutate(route)
+            cls.subrouteCrossoverMutate(route)
+        if mutate_type == 6:
+            cls.swapMutate(route)
+            cls.subrouteCrossoverMutate(route)
+        if mutate_type == 7:
+            cls.flipMutate(route)
+            cls.subrouteCrossoverMutate(route)
         route.resetFitness()
+        return route
 
     # Tournament Selection: choose a random set of chromosomes and find the fittest among them
     @classmethod
@@ -96,7 +115,7 @@ class GA:
         return fittest
 
     @classmethod
-    def subrouteCrossover(cls,route:Route) -> Route:
+    def subrouteCrossoverMutate(cls, route: Route) -> Route:
         index1 = 0
         index2 = 0
         while index1 == index2:
@@ -122,7 +141,7 @@ class GA:
         swap1 = []  # values from 1
         swap2 = []  # values from 2
 
-            # pop all the values to be replaced
+        # pop all the values to be replaced
         for i in range(route1startPos, route1lastPos + 1):
             swap1.append(route.route[index1].pop(route1startPos))
 
@@ -141,7 +160,7 @@ class GA:
         return Route
 
     @classmethod
-    def flipMutate(cls, route:Route)->Route:
+    def flipMutate(cls, route: Route) -> Route:
         index = random.randint(0, globals.numTrucks - 1)
         routestartPos = 0
         routelastPos = 0
@@ -151,9 +170,10 @@ class GA:
         swap = route.route[index][routestartPos:routestartPos]
         swap.reverse()
         route.route[index][routestartPos:routestartPos] = swap
+        return route
 
     @classmethod
-    def swapMutate(cls, route:Route)->Route:
+    def swapMutate(cls, route: Route) -> Route:
         index = random.randint(0, globals.numTrucks - 1)
         routestartPos = 0
         routelastPos = 0
@@ -164,4 +184,19 @@ class GA:
         tmp = route.route[index][routestartPos]
         route.route[index][routestartPos] = route.route[index][routelastPos]
         route.route[index][routelastPos] = tmp
-    
+        return route
+
+    @classmethod
+    def slidMutate(cls, route: Route) -> Route:
+        indexs = np.random.permutation(globals.numTrucks)
+        indexs = indexs[0 : random.randint(1, globals.numTrucks)]
+
+        toslide = route[indexs[0]][-1]
+        for k in range(1, len(indexs)):
+            tempgen = route[indexs[k]][-1]
+            route[indexs[k]][1:] = route[indexs[k]][0:-1]
+            route[indexs[k]][0] = toslide
+            toslide = tempgen
+        route[indexs[0]][1:] = route[indexs[0]][0:-1]
+        route[indexs[0]][0] = toslide
+

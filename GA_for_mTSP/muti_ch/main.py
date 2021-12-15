@@ -5,7 +5,7 @@ from .dustbin import Dustbin
 from . import globals
 from . import counter
 
-class ImporvedBaseline:
+class MultiChromosome :
 
 
     @classmethod
