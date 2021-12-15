@@ -1,11 +1,14 @@
-import numpy as np
-from GA_for_mTSP.improved_baseline.main import ImporvedBaseline
-city_path = "./instances/mtsp51.txt"
-city = np.genfromtxt(city_path, dtype=int, skip_header=1)
-d = []
+a = [1,2,3,4,5]
+b = [6,7,8,9,10]
 
-imporved_baseline = ImporvedBaseline(numGenerations=100,plot_progress=False,seedValue=0)
-imporved_baseline.GA(city=city)
+route1startPos = 1
+route1lastPos = 2
 
-imporved_baseline = ImporvedBaseline(numGenerations=100,plot_progress=False,seedValue=1)
-imporved_baseline.GA(city=city)
+route2startPos = 1
+route2lastPos = 2
+
+swap1 =a[route1startPos:route1startPos]  # values from 1
+swap1.reverse()
+# add to new location by pushing
+a[route1startPos:route1startPos] = swap1
+
