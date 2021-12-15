@@ -2,10 +2,11 @@
 Represents the chromosomes in GA's population.
 The object is collection of individual routes taken by trucks.
 """
-from routemanager import RouteManager
-from dustbin import Dustbin
-from globals import route_lengths,numTrucks
+from .routemanager import RouteManager
+from .dustbin import Dustbin
+from . import globals
 import random
+
 
 class Route:
     # Good old constructor
@@ -15,9 +16,9 @@ class Route:
         # 1D array having routes in a series - used during crossover operation
         self.base = []
         # 1D array having route lengths
-        self.routeLengths = route_lengths()
+        self.routeLengths = self.route_lengths()
 
-        for i in range(numTrucks):
+        for i in range(globals.numTrucks):
             self.route.append([])
 
         # fitness value and total distance of all routes
@@ -39,7 +40,7 @@ class Route:
             self.base[dindex - 1] = RouteManager.getDustbin(dindex)
         random.shuffle(self.base)
 
-        for i in range(numTrucks):
+        for i in range(globals.numTrucks):
             # add same first node for each route
             self.route[i].append(RouteManager.getDustbin(0))
             for j in range(self.routeLengths[i] - 1):
@@ -58,7 +59,7 @@ class Route:
         self.fitness = 0
         self.distance = 0
 
-    # reset distance to 0 
+    # reset distance to 0
     def resetFitness(self):
         self.fitness = None
         self.distance = None
@@ -75,7 +76,7 @@ class Route:
         if self.distance == None:
             routeDistance = 0
 
-            for i in range(numTrucks):
+            for i in range(globals.numTrucks):
                 for j in range(self.routeLengths[i]):
                     fromDustbin = self.getDustbin(i, j)
 
@@ -103,7 +104,7 @@ class Route:
         print(self.routeLengths)
         # for k in range(RouteManager.numberOfDustbins()-1):
         #    print (self.base[k].toString())
-        for i in range(numTrucks):
+        for i in range(globals.numTrucks):
             for j in range(self.routeLengths[i]):
                 geneString += self.getDustbin(i, j).toString() + "|"
             geneString += "\n"
@@ -113,7 +114,7 @@ class Route:
     def visualization(self, plt):
         plt.clf()
         colors = "bgrcmykw"
-        for i in range(numTrucks):
+        for i in range(globals.numTrucks):
             for j in range(self.routeLengths[i]):
                 fromDustbin = self.getDustbin(i, j)
                 if j + 1 < self.routeLengths[i]:
@@ -125,4 +126,27 @@ class Route:
                 ex = destinationDustbin.getX()
                 ey = destinationDustbin.getY()
                 plt.plot([sx, ex], [sy, ey], colors[i] + ".-")
+
+    @classmethod
+    def random_range(cls, n, total):
+        """Return a randomly chosen list of n positive integers summing to total.
+        Each such list is equally likely to occur."""
+
+        dividers = sorted(random.sample(range(1, total), n - 1))
+        return [a - b for a, b in zip(dividers + [total], [0] + dividers)]
+
+    # Randomly distribute number of dustbins to subroutes
+    # Maximum and minimum values are maintained to reach optimal result
+    @classmethod
+    def route_lengths(cls):
+        upper = globals.numNodes + globals.numTrucks - 1
+        fa = upper / globals.numTrucks * 1.6  # max route length
+        fb = upper / globals.numTrucks * 0.6  # min route length
+        a = cls.random_range(globals.numTrucks, upper)
+        while 1:
+            if all(i < fa and i > fb for i in a):
+                break
+            else:
+                a = cls.random_range(globals.numTrucks, upper)
+        return a
 

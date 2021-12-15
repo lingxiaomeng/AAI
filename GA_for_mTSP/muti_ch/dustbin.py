@@ -4,16 +4,17 @@ Locatin coordinates can be passed while creating the object or they
 will be assigned random values.
 """
 import random
-import counter
-from routemanager import RouteManager
-from globals import xMax,yMax
+from . import counter
+from .routemanager import RouteManager
+from . import globals
+
 
 class Dustbin:
     # Good old constructor
     def __init__(self, x=None, y=None, id=-1):
         if x == None and y == None:
-            self.x = random.randint(0, xMax)
-            self.y = random.randint(0, yMax)
+            self.x = random.randint(0, globals.xMax)
+            self.y = random.randint(0, globals.yMax)
             self.id = -1
         else:
             self.x = x

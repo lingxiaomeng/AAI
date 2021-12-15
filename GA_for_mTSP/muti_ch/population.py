@@ -1,29 +1,31 @@
-'''
+"""
 Collection of routes (chrmosomes)
-'''
-from route import *
+"""
+from .route import *
+
 
 class Population:
     routes = []
     # Good old contructor
-    def __init__ (self, populationSize, initialise):
+    def __init__(self, populationSize, initialise):
         self.populationSize = populationSize
         if initialise:
+            # self.routes = []
             for i in range(populationSize):
-                newRoute = Route() # Create empty route
-                newRoute.generateIndividual() # Add route sequences
-                self.routes.append(newRoute) # Add route to the population
+                newRoute = Route()  # Create empty route
+                newRoute.generateIndividual()  # Add route sequences
+                self.routes.append(newRoute)  # Add route to the population
 
     # Saves the route passed as argument at index
-    def saveRoute (self, index, route):
+    def saveRoute(self, index, route):
         self.routes[index] = route
 
     # Returns route at index
-    def getRoute (self, index):
+    def getRoute(self, index) -> Route:
         return self.routes[index]
 
     # Returns route with maximum fitness value
-    def getFittest (self):
+    def getFittest(self) -> Route:
         fittest = self.routes[0]
 
         for i in range(1, self.populationSize):

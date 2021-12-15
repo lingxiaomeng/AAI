@@ -1,54 +1,69 @@
-from numpy.core.shape_base import block
-from galogic import *
+from .galogic import *
 import matplotlib.pyplot as plt
 import progressbar
-import numpy as np
-import counter
-from dustbin import Dustbin
-from globals import seedValue, populationSize, numGenerations, city, plot_progress
+from .dustbin import Dustbin
+from . import globals
+from . import counter
 
-pbar = progressbar.ProgressBar()
-
-# Add Dustbins
-for i in range(numNodes):
-    RouteManager.addDustbin(Dustbin(city[i][1], city[i][2], i))
-RouteManager.calculateDistanceMatrix()
+class ImporvedBaseline:
 
 
-random.seed(seedValue)
-yaxis = []  # Fittest value (distance)
-xaxis = []  # Generation count
-counter.count = 0
+    @classmethod
+    def __init__(cls,numGenerations,plot_progress,seedValue) -> None:
+        globals.numGenerations = numGenerations
+        globals.plot_progress = plot_progress
+        globals.seedValue = seedValue
 
-pop = Population(populationSize, True)
-globalRoute = pop.getFittest()
-print("Initial minimum distance: " + str(globalRoute.getDistance()))
 
-# Start evolving
-if plot_progress:
-    fig = plt.figure()
+    @classmethod
+    def GA(cls, city):
+        globals.numNodes = len(city)
+        pbar = progressbar.ProgressBar()
 
-for i in pbar(range(numGenerations)):
-    pop = GA.evolvePopulation(pop)
-    localRoute = pop.getFittest()
-    if globalRoute.getDistance() > localRoute.getDistance():
-        globalRoute = localRoute
-        if plot_progress:
-            globalRoute.visualization(plt)
-            plt.draw()
-            plt.pause(0.01)
-    yaxis.append(localRoute.getDistance())
-    xaxis.append(i)
+        # Add Dustbins
+        for i in range(globals.numNodes):
+            RouteManager.addDustbin(Dustbin(city[i][1], city[i][2], i))
+        RouteManager.calculateDistanceMatrix()
 
-print("Count: %d Remain steps: %d" % (counter.count, numNodes * 20000 - counter.count))
+        random.seed(globals.seedValue)
+        yaxis = []  # Fittest value (distance)
+        xaxis = []  # Generation count
+        counter.count = 0
+        Population.routes = []
+        pop = Population(globals.populationSize, True)
+        globalRoute = pop.getFittest()
+        print("Initial minimum distance: " + str(globalRoute.getDistance()))
 
-globalRoute.visualization(plt)
-plt.draw()
+        # Start evolving
+        if globals.plot_progress:
+            fig = plt.figure()
 
-print("Global minimum distance: " + str(globalRoute.getDistance()))
-print("Final Route: " + globalRoute.toString())
+        for i in pbar(range(globals.numGenerations)):
+            pop = GA.evolvePopulation(pop)
+            localRoute = pop.getFittest()
+            if globalRoute.getDistance() > localRoute.getDistance():
+                globalRoute = localRoute
+                if globals.plot_progress:
+                    globalRoute.visualization(plt)
+                    plt.draw()
+                    plt.pause(0.01)
+            yaxis.append(localRoute.getDistance())
+            xaxis.append(i)
 
-fig = plt.figure()
+        print(
+            "Count: %d Remain steps: %d"
+            % (counter.count, globals.numNodes * 20000 - counter.count)
+        )
 
-plt.plot(xaxis, yaxis, "r-")
-plt.show()
+        globalRoute.visualization(plt)
+        plt.draw()
+
+        print("Global minimum distance: " + str(globalRoute.getDistance()))
+        print("Final Route: " + globalRoute.toString())
+
+        fig = plt.figure()
+        plt.plot(xaxis, yaxis, "r-")
+        plt.show()
+        return globalRoute.getDistance()
+
+

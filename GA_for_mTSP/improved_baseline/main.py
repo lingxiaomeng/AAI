@@ -29,7 +29,7 @@ class ImporvedBaseline:
         yaxis = []  # Fittest value (distance)
         xaxis = []  # Generation count
         counter.count = 0
-
+        Population.routes = []
         pop = Population(globals.populationSize, True)
         globalRoute = pop.getFittest()
         print("Initial minimum distance: " + str(globalRoute.getDistance()))
@@ -38,7 +38,7 @@ class ImporvedBaseline:
         if globals.plot_progress:
             fig = plt.figure()
 
-        for i in (range(globals.numGenerations)):
+        for i in pbar(range(globals.numGenerations)):
             pop = GA.evolvePopulation(pop)
             localRoute = pop.getFittest()
             if globalRoute.getDistance() > localRoute.getDistance():
