@@ -4,6 +4,8 @@ import progressbar
 from .dustbin import Dustbin
 from . import globals
 from . import counter
+from time import process_time
+
 
 class MultiChromosome :
 
@@ -30,6 +32,8 @@ class MultiChromosome :
         xaxis = []  # Generation count
         counter.count = 0
         Population.routes = []
+
+        t_start = process_time()
         pop = Population(globals.populationSize, True)
         globalRoute = pop.getFittest()
         print("Initial minimum distance: " + str(globalRoute.getDistance()))
@@ -50,6 +54,10 @@ class MultiChromosome :
             yaxis.append(localRoute.getDistance())
             xaxis.append(i)
 
+        t_end = process_time()
+
+
+
         print(
             "Count: %d Remain steps: %d"
             % (counter.count, globals.numNodes * 20000 - counter.count)
@@ -64,6 +72,7 @@ class MultiChromosome :
         fig = plt.figure()
         plt.plot(xaxis, yaxis, "r-")
         plt.show()
-        return globalRoute.getDistance()
+        t_cost = t_end - t_start
+        return t_cost, globalRoute.getDistance()
 
 

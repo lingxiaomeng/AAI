@@ -80,7 +80,7 @@ class GA:
 
     # Mutation opeeration
     @classmethod
-    def mutate(cls, route: Route)->Route:
+    def mutate(cls, route: Route) -> Route:
         mutate_type = random.randint(0, 7)
         if mutate_type == 1:
             cls.flipMutate(route)
