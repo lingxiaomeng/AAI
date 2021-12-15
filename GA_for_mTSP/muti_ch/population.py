@@ -9,12 +9,14 @@ class Population:
     # Good old contructor
     def __init__(self, populationSize, initialise):
         self.populationSize = populationSize
+        
         if initialise:
             # self.routes = []
             for i in range(populationSize):
                 newRoute = Route()  # Create empty route
                 newRoute.generateIndividual()  # Add route sequences
                 self.routes.append(newRoute)  # Add route to the population
+
 
     # Saves the route passed as argument at index
     def saveRoute(self, index, route):

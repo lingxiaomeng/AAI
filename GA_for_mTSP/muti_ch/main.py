@@ -21,7 +21,7 @@ class MultiChromosome :
     def GA(cls, city):
         globals.numNodes = len(city)
         pbar = progressbar.ProgressBar()
-
+        RouteManager.destinationDustbins = []
         # Add Dustbins
         for i in range(globals.numNodes):
             RouteManager.addDustbin(Dustbin(city[i][1], city[i][2], i))

@@ -20,6 +20,7 @@ yaxis = []  # Fittest value (distance)
 xaxis = []  # Generation count
 
 pop = Population(populationSize, True)
+Population.routes = []
 globalRoute = pop.getFittest()
 print("Initial minimum distance: " + str(globalRoute.getDistance()))
 

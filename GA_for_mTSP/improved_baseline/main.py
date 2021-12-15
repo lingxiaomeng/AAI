@@ -18,9 +18,10 @@ class ImporvedBaseline:
 
     @classmethod
     def GA(cls, city):
-        globals.numNodes = len(city)
-        pbar = progressbar.ProgressBar()
 
+        globals.numNodes = len(city)
+
+        RouteManager.destinationDustbins = []
         # Add Dustbins
         for i in range(globals.numNodes):
             RouteManager.addDustbin(Dustbin(city[i][1], city[i][2], i))
@@ -41,6 +42,7 @@ class ImporvedBaseline:
         if globals.plot_progress:
             fig = plt.figure()
 
+        pbar = progressbar.ProgressBar()
         for i in pbar(range(globals.numGenerations)):
             pop = GA.evolvePopulation(pop)
             localRoute = pop.getFittest()
@@ -60,15 +62,15 @@ class ImporvedBaseline:
             % (counter.count, globals.numNodes * 20000 - counter.count)
         )
 
-        globalRoute.visualization(plt)
-        plt.draw()
+        # globalRoute.visualization(plt)
+        # plt.draw()
 
         print("Global minimum distance: " + str(globalRoute.getDistance()))
-        print("Final Route: " + globalRoute.toString())
+        # print("Final Route: " + globalRoute.toString())
 
-        fig = plt.figure()
-        plt.plot(xaxis, yaxis, "r-")
-        plt.show()
+        # fig = plt.figure()
+        # plt.plot(xaxis, yaxis, "r-")
+        # plt.show()
         t_cost = t_end - t_start
         return t_cost, globalRoute.getDistance()
 
