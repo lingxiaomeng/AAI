@@ -69,7 +69,7 @@ class MultiChromosome :
         # print("Global minimum distance: " + str(globalRoute.getDistance()))
         # print("Final Route: " + globalRoute.toString())
 
-        fig = plt.figure()
+        # fig = plt.figure()
         # plt.plot(xaxis, yaxis, "r-")
         # plt.show()
         t_cost = t_end - t_start
