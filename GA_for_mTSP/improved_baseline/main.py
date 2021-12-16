@@ -72,6 +72,6 @@ class ImporvedBaseline:
         # plt.plot(xaxis, yaxis, "r-")
         # plt.show()
         t_cost = t_end - t_start
-        return t_cost, globalRoute.getDistance()
+        return t_cost, globalRoute.getDistance(),counter.count
 
 

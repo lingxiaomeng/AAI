@@ -7,12 +7,12 @@ Contains all global variables specific to simulation
 # Defines range for coordinates when dustbins are randomly scattered
 xMax = 10000000
 yMax = 10000000
-seedValue = 1
-numNodes = 226
+seedValue = 0
+numNodes = 51
 numGenerations = 100
 # size of population
 populationSize = 100
-mutationRate = 0.02
+mutationRate = 1
 tournamentSize = 10
 elitism = True
 # number of trucks

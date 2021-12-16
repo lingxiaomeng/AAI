@@ -7,7 +7,7 @@ import counter
 
 pbar = progressbar.ProgressBar()
 
-city_path = "/home/mlx/AAI/instances/pr226.txt"
+city_path = "/home/mlx/AAI/instances/mtsp51.txt"
 # Add Dustbins
 city = np.genfromtxt(city_path, dtype=int, skip_header=1)
 numNodes = len(city)
@@ -19,8 +19,8 @@ random.seed(seedValue)
 yaxis = []  # Fittest value (distance)
 xaxis = []  # Generation count
 
-pop = Population(populationSize, True)
 Population.routes = []
+pop = Population(populationSize, True)
 globalRoute = pop.getFittest()
 print("Initial minimum distance: " + str(globalRoute.getDistance()))
 

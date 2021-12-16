@@ -58,21 +58,21 @@ class MultiChromosome :
 
 
 
-        print(
-            "Count: %d Remain steps: %d"
-            % (counter.count, globals.numNodes * 20000 - counter.count)
-        )
+        # print(
+            # "Count: %d Remain steps: %d"
+            # % (counter.count, globals.numNodes * 20000 - counter.count)
+        # )
 
-        globalRoute.visualization(plt)
-        plt.draw()
+        # globalRoute.visualization(plt)
+        # plt.draw()
 
-        print("Global minimum distance: " + str(globalRoute.getDistance()))
-        print("Final Route: " + globalRoute.toString())
+        # print("Global minimum distance: " + str(globalRoute.getDistance()))
+        # print("Final Route: " + globalRoute.toString())
 
         fig = plt.figure()
-        plt.plot(xaxis, yaxis, "r-")
-        plt.show()
+        # plt.plot(xaxis, yaxis, "r-")
+        # plt.show()
         t_cost = t_end - t_start
-        return t_cost, globalRoute.getDistance()
+        return t_cost, globalRoute.getDistance(),counter.count
 
 
