@@ -12,3 +12,4 @@ numNodes = 51
 numTrucks = 5
 distance_cont = 0
 plot_progress = False
+plot_result = False

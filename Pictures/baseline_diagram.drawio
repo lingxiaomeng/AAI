@@ -1,0 +1,19 @@
+<mxfile host="65bd71144e">
+    <diagram id="tkoOS6KmP1HTnMY-O1T_" name="Page-1">
+        <mxGraphModel dx="1052" dy="782" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="3" value="&lt;p&gt;&lt;b&gt;&lt;font style=&quot;font-size: 16px&quot;&gt;Initialization&lt;/font&gt;&lt;/b&gt;&lt;/p&gt;" style="rounded=1;whiteSpace=wrap;html=1;fontFamily=Microsoft Yahei;" vertex="1" parent="1">
+                    <mxGeometry x="316" y="110" width="196" height="40" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Tournament Selection" style="swimlane;rounded=1;startSize=30;fontSize=16;fontFamily=Microsoft Yahei;" vertex="1" parent="1">
+                    <mxGeometry x="288" y="190" width="252" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="Text" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fontSize=16;fontFamily=Microsoft Yahei;" vertex="1" parent="1">
+                    <mxGeometry x="310" y="230" width="40" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
