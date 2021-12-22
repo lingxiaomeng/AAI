@@ -21,16 +21,17 @@ class GA:
             elitismOffset = 1
 
         # Performs tournament selection followed by crossover to generate child
-        childs = []
+        # childs = []
         for i in range(elitismOffset, newPopulation.populationSize):
             parent1 = cls.tournamentSelection(pop)
             parent2 = cls.tournamentSelection(pop)
             child = cls.crossover(parent1, parent2)
-            childs.append(child)
+            newPopulation.saveRoute(i,child)
+            # childs.append(child)
 
-        for i in range(elitismOffset, newPopulation.populationSize):
-            # Adds child to next generation
-            newPopulation.saveRoute(i, childs[i-elitismOffset])
+        # for i in range(elitismOffset, newPopulation.populationSize):
+        #     # Adds child to next generation
+        #     newPopulation.saveRoute(i, childs[i-elitismOffset])
 
         # Performs Mutation
         for i in range(elitismOffset, newPopulation.populationSize):

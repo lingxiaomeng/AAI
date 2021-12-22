@@ -7,7 +7,7 @@ import counter
 
 pbar = progressbar.ProgressBar()
 
-city_path = "/home/mlx/AAI/instances/pr226.txt"
+city_path = "/home/mlx/AAI/instances/mtsp51.txt"
 # Add Dustbins
 city = np.genfromtxt(city_path, dtype=int, skip_header=1)
 numNodes = len(city)
