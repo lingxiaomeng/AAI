@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 
 dataset = ['mtsp51', 'mtsp100', 'mtsp150', 'pr76', 'pr152', 'pr226']
-results = pd.read_csv('results.txt', header=None)
+results = pd.read_csv('results1222.txt', header=None)
 labels = ['baseline', 'ours','no']
 colors = ['skyblue', 'pink', 'lightgreen']
 distance = []
