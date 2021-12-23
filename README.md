@@ -1,3 +1,6 @@
+# Advanced Artificial Intelligence Fall 2021 Project
+
+
 # Prerequisites
 
 This project uses conda environment.
@@ -17,11 +20,17 @@ conda env create -f environment.yml
 
 You can use jupyter run this code.
 
-main.ipynb run baseline and ours for 30 times and save all results to results.txt.
+- main.ipynb run baseline and ours for 30 times and save all results to results.txt.
 
-plot.ipynb plot the results.txt file.
+- plot.ipynb plot the results.txt file.
 
-You can also run main.py or plot.py directly
+You can also run main.py or plot.py directly with
+
+```
+conda activate mtsp
+python main.py
+python plot.py
+```
 
 # Code Structure
 
@@ -32,6 +41,8 @@ Our code is in ./GA_for_mTSP/ours/
 # Results
 
 ![Comparsion](./Pictures/compare.jpg)
+
+
 
 # Dataset
 
