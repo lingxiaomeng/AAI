@@ -200,7 +200,7 @@ class GA:
         toslide = route.route[indexs[0]][-1]
         for k in range(1, len(indexs)):
             tempgen = route.route[indexs[k]][-1]
-            route.route[indexs[k]][1:] = route[indexs[k]][0:-1]
+            route.route[indexs[k]][1:] = route.route[indexs[k]][0:-1]
             route.route[indexs[k]][0] = toslide
             toslide = tempgen
         route.route[indexs[0]][1:] = route.route[indexs[0]][0:-1]
