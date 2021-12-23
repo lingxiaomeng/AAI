@@ -30,8 +30,8 @@ instances = ['mtsp51', 'mtsp100', 'mtsp150', 'pr76', 'pr152', 'pr226']
 instance_titles = ['MTSP51', 'MTSP100', 'MTSP150', 'Pr76', 'Pr152', 'Pr226']
 
 # the algorithms you want to plot
-algorithms = ['baseline','baseline*','ours','ours*','ours_nocrossover','ours']
-labels =  ['baseline','baseline*','ours','ours*','ours*\nwithout\ncrossover','ours']
+algorithms = ['baseline','baseline*','ours','ours*','ours_nocrossover','IPGA']
+labels =  ['baseline','baseline*','ours','ours*','ours*\nwithout\ncrossover','IPGA']
 colors = ['skyblue', 'pink','lightgreen', 'gold', 'coral','violet']
 
 plot_type = 'distance' # distance, count or time
