@@ -10,10 +10,11 @@ class ImporvedBaseline:
 
 
     @classmethod
-    def __init__(cls,numGenerations,plot_progress,seedValue) -> None:
+    def __init__(cls,numGenerations,plot_progress,seedValue,plot_result:False) -> None:
         globals.numGenerations = numGenerations
         globals.plot_progress = plot_progress
         globals.seedValue = seedValue
+        globals.plot_result = plot_result
 
 
     @classmethod
@@ -62,15 +63,16 @@ class ImporvedBaseline:
             % (counter.count, globals.numNodes * 20000 - counter.count)
         )
 
-        # globalRoute.visualization(plt)
-        # plt.draw()
-
         print("Global minimum distance: " + str(globalRoute.getDistance()))
-        # print("Final Route: " + globalRoute.toString())
 
-        # fig = plt.figure()
-        # plt.plot(xaxis, yaxis, "r-")
-        # plt.show()
+        if globals.plot_result:
+            plt.figure()
+            globalRoute.visualization(plt)
+            plt.show()
+            plt.figure()
+            plt.plot(xaxis, yaxis, "r-")
+            plt.show()
+
         t_cost = t_end - t_start
         return t_cost, globalRoute.getDistance(),counter.count
 

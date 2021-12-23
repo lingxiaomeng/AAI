@@ -56,14 +56,7 @@ class MultiChromosome :
 
         t_end = process_time()
 
-        # globalRoute.visualization(plt)
-        # plt.draw()
-
-        # fig = plt.figure()
-        # plt.plot(xaxis, yaxis, "r-")
-        # plt.show()
-
-        if globals.plot_progress:
+        if globals.plot_result:
             plt.figure()
             globalRoute.visualization(plt)
             plt.show()

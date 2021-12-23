@@ -31,8 +31,6 @@ class GA:
         # for i in range(elitismOffset, newPopulation.populationSize):
         #     newPopulation.saveRoute(i, childs[i-elitismOffset])
 
-
-
         # Performs Mutation
         for i in range(elitismOffset, newPopulation.populationSize):
             cls.mutate(newPopulation.getRoute(i))
