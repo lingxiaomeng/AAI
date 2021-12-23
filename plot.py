@@ -27,6 +27,7 @@ print(f"{results_filepath} contains {len(data.keys())} dataset")
 
 # instance to plot
 instances = ['mtsp51', 'mtsp100', 'mtsp150', 'pr76', 'pr152', 'pr226']
+instance_titles = ['MTSP51', 'MTSP100', 'MTSP150', 'Pr76', 'Pr152', 'Pr226']
 
 # the algorithms you want to plot
 algorithms = ['baseline','baseline*','ours','ours*','ours_nocrossover','ours']
