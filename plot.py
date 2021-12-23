@@ -56,7 +56,7 @@ for i in range(len(instances)):
         patch.set_facecolor(color)
 
 
-plt.savefig('./Pictures/compare.jpg')
+plt.savefig('./Pictures/compare.png')
 plt.show()
 
 from scipy.stats import ranksums

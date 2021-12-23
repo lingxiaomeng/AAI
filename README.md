@@ -40,7 +40,7 @@ Our code is in ./GA_for_mTSP/ours/
 
 # Results
 
-![Comparsion](./Pictures/compare.jpg)
+![Comparsion](./Pictures/compare.png)
 
 
 
