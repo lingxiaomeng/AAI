@@ -1,10 +1,80 @@
-d = [72183.25068141149,73826.21007252063,73844.0532364976,73856.7860305372,74809.13387319613,71061.37574138722,67939.69837252605,76347.85148619938,69980.88795807016,70363.8819256862,67572.66057040573,67963.71130660344,64880.46826966197,65306.62895801834,65169.342525912056,71079.75192073357,74451.56417418184,70502.88069169503,70128.90228496134,76077.05188535572,65889.10714158308,71800.08807739792,65736.99317147266,75023.49834214266,72134.8309356906,69942.37106976718,67345.11182862826,67448.94075675211,63953.04423431346,65027.87312366306]
-
-d_2 = [66481.41946338906,68074.89721476758,74357.56112858112,65840.98058263064,68419.79922611154,71998.98636803261,77184.82514457063,72136.10427656042,69226.60006340864,66094.85867586781,67234.67570370993,75709.5095076132,65189.288012948804,68855.70788541298,75153.1086918537,66695.02033736947,70972.52880487106,63380.69492185006,70539.82652369734,63535.576526946395,69000.64176487573,72055.03321413003,70133.0079692366,68688.0996978157,68941.60308883601,70658.26429929517,70014.43273269161,69812.61906895842,75537.77467082269,70379.6348255472]
-
-from scipy.stats import ranksums
 import numpy as np
+import csv
 
-print(np.mean(d))
-print(np.mean(d_2))
-print(ranksums(d, d_2, "greater"))
+T = 30
+output_filepath = './results.txt'
+plot_result = False
+
+instances = ["mtsp51","mtsp100","mtsp150","pr76","pr152","pr226"]
+# numGenerations = [105,109,110,107,110,111] # Generation number for baseline 
+numGenerations = [105,109,110,107,110,111] # Generation number for original 
+
+results_file = open(output_filepath,'a')
+
+from GA_for_mTSP.improved_baseline.main import ImporvedBaseline
+
+writer = csv.writer(results_file,delimiter=',')
+algorithm_name = "baseline"
+
+for i in range(len(instances)):
+    instance = instances[i]
+    city = np.genfromtxt('./instances/'+instance+'.txt', dtype=int, skip_header=1)
+
+
+    distances_baseline = [instance, algorithm_name, "distance"]
+    time_baseline =  [instance, algorithm_name, "time"]
+    count_baseline =  [instance, algorithm_name, "count"]
+    
+    for k in range(T):
+        imporved_baseline = ImporvedBaseline(numGenerations=numGenerations[i]+1,plot_progress=False,seedValue=k,plot_result = plot_result)
+        t,d,c = imporved_baseline.GA(city=city)
+        time_baseline.append(t)
+        distances_baseline.append(d)
+        count_baseline.append(c)
+        print(f"epoch {k}, time cost: {t}, min distance: {d}, steps: {c}")
+
+
+    writer.writerow(distances_baseline)
+    writer.writerow(time_baseline)
+    writer.writerow(count_baseline)
+    results_file.flush()
+
+
+results_file.close()
+
+numGenerations = [186,193,195,190,195,197] # Generation number for modified 
+# numGenerations = [105,109,110,107,110,111] # Generation number for original 
+
+
+instances = ["mtsp51","mtsp100","mtsp150","pr76","pr152","pr226"]
+
+results_file = open(output_filepath,'a')
+
+from GA_for_mTSP.ours.main import MultiChromosome
+
+writer = csv.writer(results_file,delimiter=',')
+algorithm_name = "ours_nocrossover"
+
+for i in range(len(instances)):
+    instance = instances[i]
+    city = np.genfromtxt('./instances/'+instance+'.txt', dtype=int, skip_header=1)
+    distances_our = [instance, algorithm_name, "distance"]
+    time_our =  [instance, algorithm_name, "time"]
+    count_our =  [instance, algorithm_name, "count"]
+    
+    for k in range(T):
+        ours = MultiChromosome(numGenerations=numGenerations[i],plot_progress=False,seedValue=k,plot_result = plot_result)
+        t,d,c = ours.GA(city=city)
+        time_our.append(t)
+        distances_our.append(d)
+        count_our.append(c)
+        print(f"epoch {k}, time cost: {t}, min distance: {d}, steps: {c}")
+
+
+    writer.writerow(distances_our)
+    writer.writerow(time_our)
+    writer.writerow(count_our)
+    results_file.flush()
+
+
+results_file.close()
