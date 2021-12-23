@@ -93,7 +93,7 @@ class GA:
         if mutate_type == 2:
             cls.swapMutate(route)
         if mutate_type == 3:
-            cls.slidMutate(route)
+            cls.flipMutate(route)
         if mutate_type == 4:
             cls.subrouteCrossoverMutate(route)
         if mutate_type == 5:
@@ -103,7 +103,7 @@ class GA:
             cls.swapMutate(route)
             cls.subrouteCrossoverMutate(route)
         if mutate_type == 7:
-            cls.slidMutate(route)
+            cls.flipMutate(route)
             cls.subrouteCrossoverMutate(route)
         route.resetFitness()
         return route
@@ -198,11 +198,11 @@ class GA:
         indexs = indexs[0 : random.randint(1, globals.numTrucks)]
 
         toslide = route.route[indexs[0]][-1]
-        for k in range(1, len(indexs)):
+        for k in range(2, len(indexs)):
             tempgen = route.route[indexs[k]][-1]
-            route.route[indexs[k]][1:] = route.route[indexs[k]][0:-1]
-            route.route[indexs[k]][0] = toslide
+            route.route[indexs[k]][2:] = route.route[indexs[k]][0:-1]
+            route.route[indexs[k]][1] = toslide
             toslide = tempgen
-        route.route[indexs[0]][1:] = route.route[indexs[0]][0:-1]
-        route.route[indexs[0]][0] = toslide
+        route.route[indexs[0]][2:] = route.route[indexs[0]][0:-1]
+        route.route[indexs[0]][1] = toslide
 
