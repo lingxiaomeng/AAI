@@ -93,7 +93,7 @@ class GA:
         if mutate_type == 2:
             cls.swapMutate(route)
         if mutate_type == 3:
-            cls.flipMutate(route)
+            cls.slidMutate(route)
         if mutate_type == 4:
             cls.subrouteCrossoverMutate(route)
         if mutate_type == 5:
@@ -103,7 +103,7 @@ class GA:
             cls.swapMutate(route)
             cls.subrouteCrossoverMutate(route)
         if mutate_type == 7:
-            cls.flipMutate(route)
+            cls.slidMutate(route)
             cls.subrouteCrossoverMutate(route)
         route.resetFitness()
         return route
