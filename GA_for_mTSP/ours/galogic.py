@@ -197,12 +197,12 @@ class GA:
         indexs = np.random.permutation(globals.numTrucks)
         indexs = indexs[0 : random.randint(1, globals.numTrucks)]
 
-        toslide = route[indexs[0]][-1]
+        toslide = route.route[indexs[0]][-1]
         for k in range(1, len(indexs)):
-            tempgen = route[indexs[k]][-1]
-            route[indexs[k]][1:] = route[indexs[k]][0:-1]
-            route[indexs[k]][0] = toslide
+            tempgen = route.route[indexs[k]][-1]
+            route.route[indexs[k]][1:] = route[indexs[k]][0:-1]
+            route.route[indexs[k]][0] = toslide
             toslide = tempgen
-        route[indexs[0]][1:] = route[indexs[0]][0:-1]
-        route[indexs[0]][0] = toslide
+        route.route[indexs[0]][1:] = route.route[indexs[0]][0:-1]
+        route.route[indexs[0]][0] = toslide
 
