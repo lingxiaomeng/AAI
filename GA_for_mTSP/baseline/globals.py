@@ -9,7 +9,7 @@ xMax = 10000000
 yMax = 10000000
 seedValue = 0
 numNodes = 51
-numGenerations = 10
+numGenerations = 106
 # size of population
 populationSize = 100
 mutationRate = 1

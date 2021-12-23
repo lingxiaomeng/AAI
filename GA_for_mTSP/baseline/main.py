@@ -25,7 +25,7 @@ globalRoute = pop.getFittest()
 print("Initial minimum distance: " + str(globalRoute.getDistance()))
 
 # Start evolving
-fig = plt.figure()
+# fig = plt.figure()
 
 counter.count = 0
 for i in pbar(range(numGenerations)):
