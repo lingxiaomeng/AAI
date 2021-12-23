@@ -21,6 +21,14 @@ main.ipynb run baseline and ours for 30 times and save all results to results.tx
 
 plot.ipynb plot the results.txt file.
 
+You can also run main.py or plot.py directly
+
+# Code Structure
+
+Our algorithm is based on baseline.
+
+Our code is in ./GA_for_mTSP/ours/
+
 # Results
 
 ![Comparsion](./Pictures/compare.jpg)
