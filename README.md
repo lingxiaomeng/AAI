@@ -17,7 +17,13 @@ conda env create -f environment.yml
 
 You can use jupyter run this code.
 
-main.ipynb contains
+main.ipynb run baseline and ours for 30 times and save all results to results.txt.
+
+plot.ipynb plot the results.txt file.
+
+# Results
+
+![Comparsion](./Pictures/compare.jpg)
 
 # Dataset
 
