@@ -126,6 +126,7 @@ class Route:
                 ex = destinationDustbin.getX()
                 ey = destinationDustbin.getY()
                 plt.plot([sx, ex], [sy, ey], colors[i] + ".-")
+        plt.plot(self.getDustbin(0,0).getX(),self.getDustbin(0,0).getY(),'k.',markersize = 16)
 
     @classmethod
     def random_range(cls, n, total):
